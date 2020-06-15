@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/dashboard.css">
+</head>
+<style>
+  
+  table, tr{
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid black;
+      padding: 3.5px;
+      font-size: 13px;
+  }
+  td{
+      padding: 3.5px;
+      font-size: 13px;
+  }
+  input{
+      padding: 3.5px;
+      width: auto;
+      height: auto;
+  }
+  input[type = 'submit'] {
+      display: block;
+      margin: 0 auto;
+      font-size: 13px;
+      font-weight: bold;
+  }
+  select{
+      font-size: 16px;
+      width: auto;
+      height: auto;
+  }
+  label{
+      font-weight: bold;
+  }
+</style>
+
+<body>
+<div class="header">
+    <h1 style="color: aliceblue;">Fed Choice Bank</h1>
+<ul>
+  <div class="dropdown">
+    <button class="dropbtn"><a style="color: black; text-decoration: none;" href="home">Home</a>
+    </button>
+  </div>
+<div class="dropdown">
+  <button class="dropbtn">Customer Management&nbsp;<li class="arrow down"></li></button>
+  <div class="dropdown-content">
+  <a href="createcustomer">Create Customer</a>
+  <a href="customer_search">Update Customer</a>
+  <a href="deletecustomer">Delete Customer</a>
+  <a href="customerstatus">Customer Status</a>
+  </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Account Management&nbsp;<li class="arrow down"></li></button>
+    <div class="dropdown-content">
+  <a href="createaccount">Create Account</a>
+  <a href="deleteaccount">Delete Account</a>
+  <a href="accountstatus">Account Status</a>
+  </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Status Details&nbsp;<li class="arrow down"></li></button>
+    <div class="dropdown-content">
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Account Operations&nbsp;<li class="arrow down"></li></button>
+    <div class="dropdown-content">
+  <a href="depositmoney">Deposit Money</a>
+  <a href="withdrawmoney">Withdraw Money</a>
+  <a href="transfermoney">Transfer Money</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn"><a style="color: black; text-decoration: none;" href="logout">Logout</a>
+  </button>
+</div>
+</ul>
+</div>
+</body>
+<div class="main">
+    <h3><center>Create Customer Screen</center></h3>
+<center>
+<h3 style="color: green;">{{mes}}</h3>
+<form method="POST" action=''>
+  <table>
+      <tr>
+          <td><label for="custid">Customer SSN:</label>
+          <td><input type="text" name="ssn" value="{{new_ssnid}}"/></td>
+      </tr>
+  <tr>
+          <td><label for="custid">Customer ID:</label>
+          <td><input type="text" name="custid" value="{{new_customerid}}"/></td>
+      </tr>
+      <tr>
+          <td><label for="custid">Name:</label>
+          <td><input type="text" name="name"  placeholder="Enter name:" required/></td>
+      </tr>
+  <tr>
+          <td><label for="custid">Age:</label>
+          <td><input type="number" name="age"  placeholder="Enter age:" required/></td>
+      </tr>
+  <tr>
+          <td><label for="custid">Address:</label>
+          <td><input type="text" name="adr"  placeholder="Enter address:" required/></td>
+      </tr>
+  <tr>
+          <td><label for="custid">State:</label>
+          <td><input type="text" name="state"  placeholder="Enter state" required/></td>
+      </tr>
+  <tr>
+          <td><label for="custid">City:</label>
+          <td><input type="text" name="city"  placeholder="Enter city" required/></td>
+      </tr>
+      </table>
+  <br>
+  <input type="submit" value="Create Account">
+</form>
+</center>
+</div>
+
+<div class="footer">
+<div class="row">
+  <div class="column3" style="background-color:black;">
+  </div>
+<div class="row">
+  <div class="column" style="background-color:black;">
+    <h3>About us</h3>
+    <p>Some text..</p>
+  </div>
+  <div class="column" style="background-color:black;">
+    <h3>Services</h3>
+    <p>Some text..</p>
+  </div>
+  <div class="column" style="background-color:black;">
+    <h3>Contact us</h3>
+    <p style="padding: 0;">Email:customerservice@fedchoice.com</p>
+    <p>Contact No:022582252</p>
+    <p>Address:realpoint, near hitech city</p>
+    <p>hyderabad,india 500369</p>
+  </div>
+</div></div>
+
+</body>
+</html> 

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/dashboard.css">
+</head>
+<style>
+    table, tr{
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+        font-size: 13px;
+    }
+    td{
+        padding: 5px;
+        font-size: 13px;
+    }
+    input{
+        padding: 5px;
+        width: 300px;
+        height: 40px;
+    }
+    input[type = 'submit'] {
+        display: block;
+        font-size: 13px;
+        font-weight: bold;
+    }
+    select{
+        font-size: 13px;
+        width: 300px;
+        height: 40px;
+    }
+    label{
+        font-weight: bold;
+    }
+</style>
+<body>
+<div class="header">
+    <h1 style="color: aliceblue;">Fed Choice Bank</h1>
+<ul>
+  <div class="dropdown">
+    <button class="dropbtn"><a style="color: black; text-decoration: none;" href="home">Home</a>
+    </button>
+  </div>
+<div class="dropdown">
+  <button class="dropbtn">Customer Management&nbsp;<li class="arrow down"></li></button>
+  <div class="dropdown-content">
+  <a href="createcustomer">Create Customer</a>
+  <a href="updatecustomer">Update Customer</a>
+  <a href="deletecustomer">Delete Customer</a>
+  <a href="customerstatus">Customer Status</a>
+  </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Account Management&nbsp;<li class="arrow down"></li></button>
+    <div class="dropdown-content">
+  <a href="createaccount">Create Account</a>
+  <a href="deleteaccount">Delete Account</a>
+  <a href="accountstatus">Account Status</a>
+  </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Status Details&nbsp;<li class="arrow down"></li></button>
+    <div class="dropdown-content">
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Account Operations&nbsp;<li class="arrow down"></li></button>
+    <div class="dropdown-content">
+  <a href="depositmoney">Deposit Money</a>
+  <a href="withdrawmoney">Withdraw Money</a>
+  <a href="transfermoney">Transfer Money</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn"><a style="color: black; text-decoration: none;" href="logout">Logout</a>
+  </button>
+</div>
+</ul>
+</div>
+</body>
+<div class="main">
+  <center>
+    <h3>Transfer Money</h3>
+    <form method="POST" action=''>
+        <table>
+            <tr>
+                <td><label for="custid">Customer ID:</label>
+                <td><input type="text" name="custid" pattern="[0-9]{9}" placeholder="Enter 9 digit Customer ID" required/></td>
+            </tr>
+            <tr>
+                <td><label for="src_type">Source Account Type:</label></td>
+                <td>
+                    <select name="src_type">
+                        <option value="savings">Savings</option>
+                        <option value="current">Current</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="tar_type">Target Account Type:</label></td>
+                <td>    
+                    <select name="tar_type">
+                        <option value="savings">Savings</option>
+                        <option value="current">Current</option>
+                    </select>
+                </td>    
+            </tr>
+            <tr>
+                <td><label for="tr_amt">Deposit Amount:</label></td>
+                <td><input type="number" name="tr_amt" required/></td>
+            </tr>    
+          </table>
+        <input type="submit" value="TRANSFER">
+    </form>
+    </center>
+</div>
+
+<div class="footer">
+<div class="row">
+  <div class="column3" style="background-color:black;">
+  </div>
+<div class="row">
+  <div class="column" style="background-color:black;">
+    <h3>About us</h3>
+    <p>Some text..</p>
+  </div>
+  <div class="column" style="background-color:black;">
+    <h3>Services</h3>
+    <p>Some text..</p>
+  </div>
+  <div class="column" style="background-color:black;">
+    <h3>Contact us</h3>
+    <p>Some text..</p>
+  </div>
+</div></div>
+
+</body>
+</html> 

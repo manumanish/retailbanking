@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/dashboard.css">
+</head>
+<body>
+<div class="header">
+    <h1 style="color: aliceblue;">Fed Choice Bank</h1>
+<ul>
+  <div class="dropdown">
+    <button class="dropbtn"><a style="color: black; text-decoration: none;" href="home">Home</a>
+    </button>
+  </div>
+<div class="dropdown">
+  <button class="dropbtn">Customer Management&nbsp;<li class="arrow down"></li></button>
+  <div class="dropdown-content">
+  <a href="createcustomer">Create Customer</a>
+  <a href="customer_search">Update Customer</a>
+  <a href="deletecustomer">Delete Customer</a>
+  <a href="customerstatus">Customer Status</a>
+  </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Account Management&nbsp;<li class="arrow down"></li></button>
+    <div class="dropdown-content">
+  <a href="createaccount">Create Account</a>
+  <a href="deleteaccount">Delete Account</a>
+  <a href="accountstatus">Account Status</a>
+  </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Status Details&nbsp;<li class="arrow down"></li></button>
+    <div class="dropdown-content">
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  </div>
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Account Operations&nbsp;<li class="arrow down"></li></button>
+    <div class="dropdown-content">
+  <a href="depositmoney">Deposit Money</a>
+  <a href="withdrawmoney">Withdraw Money</a>
+  <a href="transfermoney">Transfer Money</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn"><a style="color: black; text-decoration: none;" href="logout">Logout</a>
+  </button>
+</div>
+</ul>
+</div>
+</body>
+<div class="main">
+  
+<style>
+  table, tr{
+      margin-left: auto;
+      margin-right: auto;
+      border: 0.5px solid black;
+      padding: 3px;
+      font-size:12px;
+  }
+  td{
+      padding: 3px;
+      font-size: 12px;
+  }
+  input{
+      padding: 3px;
+      width: auto;
+      height: auto;
+  }
+  input[type = 'submit'] {
+      display: block;
+      margin: 0 auto;
+      font-size: 12px;
+      font-weight: bold;
+  }
+  select{
+      font-size: 12px;
+      width: auto;
+      height: 150px;
+  }
+  label{
+      font-weight: bold;
+  }
+</style>
+
+<h4><center>Update Customer</center></h4>
+<p style="color: green;"><center style="color: green;">{{mes}}</center></p>
+<form method="POST" action=''>
+  <table>
+      <tr>
+          <td><label for="custid">Customer SSN ID</label>
+          <td>{{result[0][0]}}</td>
+      </tr>  
+      <tr>
+          <td><label for="tr_amt">Customer ID</label></td>
+          <td>{{result[0][6]}}</td>
+      </tr>  
+  <tr>
+          <td><label for="tr_amt">Old Customer Name</label></td>
+          <td>{{result[0][1]}}</td>
+      </tr>
+  <tr>
+          <td><label for="tr_amt">New Customer Name</label></td>
+          <td><input type="text"  name="new_name"></td>
+      </tr>
+  <tr>
+          <td><label for="tr_amt">Old Address</label></td>
+          <td>{{result[0][3]}}</td>
+      </tr>
+  <tr>
+          <td><label for="tr_amt">New Adress</label></td>
+          <td><input type="text" name="new_adr" ></td>
+      </tr>
+  <tr>
+          <td><label for="tr_amt">Old Age</label></td>
+          <td>{{result[0][2]}}</td>
+      </tr>
+  <tr>
+          <td><label for="tr_amt">New Age</label></td>
+          <td><input type="number"  name="new_age"></td>
+      </tr>
+      </table>
+    <br>
+  <input type="submit" value="Update">
+</form>
+</div>
+
+<div class="footer">
+<div class="row">
+  <div class="column3" style="background-color:black;">
+  </div>
+<div class="row">
+  <div class="column" style="background-color:black;">
+    <h3>About us</h3>
+    <p>Some text..</p>
+  </div>
+  <div class="column" style="background-color:black;">
+    <h3>Services</h3>
+    <p>Some text..</p>
+  </div>
+  <div class="column" style="background-color:black;">
+    <h3>Contact us</h3>
+    <p>Some text..</p>
+  </div>
+</div></div>
+
+</body>
+</html> 
