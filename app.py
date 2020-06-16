@@ -76,21 +76,30 @@ def transfermoney():
         tar_type=request.form['tar_type']
         tr_amt=request.form['tr_amt']
         cur=mysql.connection.cursor()
-        #cur.execute("SELECT * FROM accounts WHERE customerid=%s and accountype=%s",(custid,srctype))
-        #res=cur.fetchall()
-        #if res==0:
-            #return render_template('transfermoney.html',mes="Incorrect details")
-        #cur.execute("SELECT * FROM accounts WHERE customerid=%s and accountype=%s",(custid,tar_type))
-        #res1=cur.fetchall()
-        #if res1==0:
-            #return render_template('transfermoney.html',mes="Incorrect details")
-        #cur.execute("select amt from accounts where customerid=%s and accountype=%s",(custid,srctype))
-        #amt_fetched=cur.fetchall()
-        #final_src=tr_amt-amt_fetched[0][0]
-        #cur.execute("update accounts set amt=%s where customerid=%s and accountype=%s",(final_src,custid,srctype))
-        #cur.execute("insert into accounts(amt)values(%s) where ",(amt_fetched))
-        #mysql.connection.commit()
-        #cur.close
+        cur.execute("SELECT amt FROM accounts WHERE customerid=%s and accounttype=%s",(custid,srctype))
+        src_amt=cur.fetchall()
+        if len(src_amt)==0:
+            return render_template('transfermoney.html',mes="Incorrect details",flag=0)
+        cur.execute("SELECT amt FROM accounts WHERE customerid=%s and accounttype=%s",(custid,tar_type))
+        tr1_amt=cur.fetchall()
+        if len(tr1_amt)==0:
+            return render_template('transfermoney.html',mes="Incorrect details",flag=0)
+        mysql.connection.commit()
+        if(srctype=="savings" and tar_type=="current"):
+            src_amt=abs(src_amt[0][0]-int(tr_amt))
+            tr1_amt=abs(tr1_amt[0][0]+int(tr_amt))
+            cur.execute("update accounts set amt=%s where customerid=%s and accounttype=%s",(tr1_amt,custid,tar_type))
+            cur.execute("update accounts set amt=%s where customerid=%s and accounttype=%s",(src_amt,custid,srctype))
+            mysql.connection.commit()
+            return render_template('transfermoney.html',mes="success!",flag=1)
+        if(srctype=="current" and tar_type=="savings"):
+            src_amt=abs(src_amt[0][0]+int(tr_amt))
+            tr1_amt=abs(tr1_amt[0][0]-int(tr_amt))
+            cur.execute("update accounts set amt=%s where customerid=%s and accounttype=%s",(tr1_amt,custid,srctype))
+            cur.execute("update accounts set amt=%s where customerid=%s and accounttype=%s",(src_amt,custid,tar_type))
+            mysql.connection.commit()
+            return render_template('transfermoney.html',mes="success!",flag=1)
+        cur.close
         return render_template('transfermoney.html')
     return render_template('transfermoney.html')
 
@@ -290,5 +299,23 @@ def depositsearch():
         session['result_dep']=result
         return redirect(url_for('depositmoney'))
     return render_template('/depositsearch.html')
+
+@app.route('/accountstatement',methods=['GET','POST'])
+def accountstatement():
+    if 'actid_stat' in session:
+        actid=session['actid_stat']
+        cur=mysql.connection.cursor()
+        cur.execute("SELECT * FROM accountstatement WHERE accountid= %s",[actid])
+        res=cur.fetchall()
+        return render_template('accountstatement.html',userdetails=res)
+    return render_template('accountstatement.html')
+
+@app.route('/accountstatementsearch',methods=['GET','POST'])
+def accountstatementsearch():
+    if request.method=="POST":
+        actid=request.form['actid']
+        session['actid_stat']=actid
+        return redirect(url_for('accountstatement'))
+    return render_template('accountstatementsearch.html')
 
 app.run()

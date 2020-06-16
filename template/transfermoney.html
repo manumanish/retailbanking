@@ -32,6 +32,12 @@
 <div class="main">
   <center>
     <h3>Transfer Money</h3>
+    {% if flag==1 %}
+    <p style="color: green;">{{mes}}</p>
+    {% endif %}
+    {% if flag==0%}
+    <p style="color: red;">{{mes}}</p>
+    {% endif %}
     <form method="POST" action=''>
         <table>
             <tr>

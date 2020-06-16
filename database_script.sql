@@ -52,3 +52,5 @@ drop table balanceamount;
 
 alter table accountstatement drop date;
 ALTER TABLE accountstatement ADD date TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+alter table customerstatus drop primary key;
