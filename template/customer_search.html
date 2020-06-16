@@ -1,59 +1,5 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="../static/dashboard.css">
-</head>
-<body>
-<div class="header">
-    <h1 style="color: aliceblue;">Fed Choice Bank</h1>
-<ul>
-  <div class="dropdown">
-    <button class="dropbtn"><a style="color: black; text-decoration: none;" href="home">Home</a>
-    </button>
-  </div>
-<div class="dropdown">
-  <button class="dropbtn">Customer Management&nbsp;<li class="arrow down"></li></button>
-  <div class="dropdown-content">
-  <a href="createcustomer">Create Customer</a>
-  <a href="customer_search">Update Customer</a>
-  <a href="deletecustomer">Delete Customer</a>
-  <a href="customerstatus">Customer Status</a>
-  </div>
-</div>
-<div class="dropdown">
-    <button class="dropbtn">Account Management&nbsp;<li class="arrow down"></li></button>
-    <div class="dropdown-content">
-  <a href="createaccount">Create Account</a>
-  <a href="deleteaccount">Delete Account</a>
-  <a href="accountstatus">Account Status</a>
-  </div>
-</div>
-<div class="dropdown">
-    <button class="dropbtn">Status Details&nbsp;<li class="arrow down"></li></button>
-    <div class="dropdown-content">
-  <a href="#">Link 1</a>
-  <a href="#">Link 2</a>
-  <a href="#">Link 3</a>
-  </div>
-</div>
-<div class="dropdown">
-    <button class="dropbtn">Account Operations&nbsp;<li class="arrow down"></li></button>
-    <div class="dropdown-content">
-  <a href="depositmoney">Deposit Money</a>
-  <a href="withdrawmoney">Withdraw Money</a>
-  <a href="transfermoney">Transfer Money</a>
-  </div>
-</div>
-<div class="dropdown">
-  <button class="dropbtn"><a style="color: black; text-decoration: none;" href="logout">Logout</a>
-  </button>
-</div>
-</ul>
-</div>
-</body>
-<div class="main">
-  
+{% include 'headertemplate.html' %}
+<div class="main">  
 <style>
     table, tr{
         margin-left: auto;
@@ -105,24 +51,4 @@
 </form>
 </div>
 
-<div class="footer">
-<div class="row">
-  <div class="column3" style="background-color:black;">
-  </div>
-<div class="row">
-  <div class="column" style="background-color:black;">
-    <h3>About us</h3>
-    <p>Some text..</p>
-  </div>
-  <div class="column" style="background-color:black;">
-    <h3>Services</h3>
-    <p>Some text..</p>
-  </div>
-  <div class="column" style="background-color:black;">
-    <h3>Contact us</h3>
-    <p>Some text..</p>
-  </div>
-</div></div>
-
-</body>
-</html> 
+{% include 'footertemplate.html' %}

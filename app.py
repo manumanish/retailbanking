@@ -70,7 +70,30 @@ def createcustomer():
 
 @app.route('/transfermoney', methods=['GET','POST'])
 def transfermoney():
+    if request.method=='POST':
+        custid=request.form['custid']
+        srctype=request.form['src_type']
+        tar_type=request.form['tar_type']
+        tr_amt=request.form['tr_amt']
+        cur=mysql.connection.cursor()
+        #cur.execute("SELECT * FROM accounts WHERE customerid=%s and accountype=%s",(custid,srctype))
+        #res=cur.fetchall()
+        #if res==0:
+            #return render_template('transfermoney.html',mes="Incorrect details")
+        #cur.execute("SELECT * FROM accounts WHERE customerid=%s and accountype=%s",(custid,tar_type))
+        #res1=cur.fetchall()
+        #if res1==0:
+            #return render_template('transfermoney.html',mes="Incorrect details")
+        #cur.execute("select amt from accounts where customerid=%s and accountype=%s",(custid,srctype))
+        #amt_fetched=cur.fetchall()
+        #final_src=tr_amt-amt_fetched[0][0]
+        #cur.execute("update accounts set amt=%s where customerid=%s and accountype=%s",(final_src,custid,srctype))
+        #cur.execute("insert into accounts(amt)values(%s) where ",(amt_fetched))
+        #mysql.connection.commit()
+        #cur.close
+        return render_template('transfermoney.html')
     return render_template('transfermoney.html')
+
 
 @app.route('/home', methods=['GET','POST'])
 def home():
@@ -183,11 +206,48 @@ def accountstatus():
 
 @app.route('/depositmoney', methods=['GET','POST'])
 def depositmoney():
-    return render_template('depositmoney.html')
+    if 'actid_dep' in session:
+        actid=session['actid_dep']
+    if 'result_dep' in session:
+        result=session['result_dep']
+    if request.method=='POST':
+        t=request.form['with_amt']
+        amt=int(request.form['with_amt'])
+        amt=int(result[0][3])+amt
+        cur=mysql.connection.cursor()
+        cur1=mysql.connection.cursor()
+        cur.execute('UPDATE accounts SET amt=%s where accountid=%s',(amt,actid))
+        cur1.execute('select * from accounts where accountid=%s',[actid])
+        result1=cur1.fetchall()
+        cur.execute('insert into accountstatement(des,amount,accountid)values(%s,%s,%s)',("CREDIT",t,actid))
+        mysql.connection.commit()
+        cur.close()
+        cur1.close()
+        return render_template('depositmoney.html',mes="depsoit successful!",result=result1)
+    return render_template('depositmoney.html',result=result)
+
 
 @app.route('/withdrawmoney', methods=['GET','POST'])
 def withdrawmoney():
-    return render_template('withdrawmoney.html')
+    if 'actid1' in session:
+        actid=session['actid1']
+    if 'result_with' in session:
+        result=session['result_with']
+    if request.method=='POST':
+        t=request.form['with_amt']
+        amt=int(request.form['with_amt'])
+        amt=int(result[0][3])-amt
+        cur=mysql.connection.cursor()
+        cur1=mysql.connection.cursor()
+        cur.execute('UPDATE accounts SET amt=%s where accountid=%s',(amt,actid))
+        cur1.execute('select * from accounts where accountid=%s',[actid])
+        result1=cur1.fetchall()
+        cur.execute('insert into accountstatement(des,amount,accountid)values(%s,%s,%s)',("DEBIT",t,actid))
+        mysql.connection.commit()
+        cur.close()
+        cur1.close()
+        return render_template('withdrawmoney.html',mes="Withdraw successful!",result=result1)
+    return render_template('withdrawmoney.html',result=result)
 
 
 @app.route('/customer_search',methods=['GET','POST'])
@@ -204,5 +264,31 @@ def search():
         session['result1']=result
         return redirect(url_for('updatecustomer'))
     return render_template('/customer_search.html')
+
+@app.route('/withdrawsearch',methods=['GET','POST'])
+def withdrawsearch():
+    if request.method=="POST":
+        actid=request.form['actid']
+        session['actid1']=actid
+        data=actid
+        cur=mysql.connection.cursor()
+        cur.execute("SELECT * FROM accounts WHERE accountid= %s",[data])
+        result=cur.fetchall()
+        session['result_with']=result
+        return redirect(url_for('withdrawmoney'))
+    return render_template('/withdrawsearch.html')
+
+@app.route('/depositsearch',methods=['GET','POST'])
+def depositsearch():
+    if request.method=="POST":
+        actid=request.form['actid']
+        session['actid_dep']=actid
+        data=actid
+        cur=mysql.connection.cursor()
+        cur.execute("SELECT * FROM accounts WHERE accountid= %s",[data])
+        result=cur.fetchall()
+        session['result_dep']=result
+        return redirect(url_for('depositmoney'))
+    return render_template('/depositsearch.html')
 
 app.run()
